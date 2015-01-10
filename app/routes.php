@@ -1,4 +1,26 @@
 <?php
+	
+
+// Nos mostrará el formulario de login.
+Route::get('login', 'AuthController@showLogin');
+
+// Validamos los datos de inicio de sesión.
+Route::post('login', 'AuthController@postLogin');
+
+
+
+
+
+Route::group(array('before' => 'auth'), function()
+{
+
+	Route::get('login2','SessionsController@create');
+
+	Route::post('store','SessionsController@store');
+
+});
+
+
 
 
 	/*Route::get('users','UsersController@index');
@@ -82,11 +104,12 @@ Route::get('/', function()
 
 
 
-	return User::orderBy('username','asc')->take(2)->get();
+	//return User::orderBy('username','asc')->take(2)->get();
+
 
 
 	
-
+	 return View::make('hello2');
 
 });
 

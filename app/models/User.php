@@ -11,7 +11,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 
 	public $timestamps = false;
 
-	protected $fillable = ['id','username','password'];
+	protected $fillable = ['id','username','password']; // para dar permisos de esritorioen la bd 
+	//Error unsigned
 
 	/**
 	 * The database table used by the model.

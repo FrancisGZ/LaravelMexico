@@ -48,8 +48,10 @@ class UsersController extends \BaseController {
 		$user -> save()	;
 
 		//return Redirect::to('/users');
-
+			
 		return Redirect::route('users.index');
+
+	
 
 	}
 }
