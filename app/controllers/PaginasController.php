@@ -16,4 +16,12 @@ class PaginasController extends BaseController {
 		$nombre='acerca';
 		return View::make('info') -> with ('nombre', $nombre);
 	}
+
+	public function mostrarPagina($nombrePagina)
+	{
+		
+		return View::make('paginaDetalle') -> with ('nombrePagina', $nombrePagina);
+
+	    
+	}
 }

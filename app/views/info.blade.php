@@ -37,6 +37,8 @@
 	<div class="welcome">
 		
 		<h1>Esta es la pagina. {{$nombre}}</h1>
+
+		<a href="info/pagina">pagina</a>
 	</div>
 </body>
 </html>

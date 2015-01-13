@@ -1,6 +1,16 @@
 <?php
 	
 
+//Rutas por defecto
+
+Route::get('/', function()
+{
+	return View::make('hello');
+
+
+	 
+});
+
 // Nos mostrará el formulario de login.
 Route::get('login', 'AuthController@showLogin');
 
@@ -14,97 +24,69 @@ Route::post('login', 'AuthController@postLogin');
 Route::group(array('before' => 'auth'), function()
 {
 
-	Route::get('login2','SessionsController@create');
 
-	Route::post('store','SessionsController@store');
 
 });
 
 
 
+		Route::resource('users','UsersController');
 
-	/*Route::get('users','UsersController@index');
-	Route::get('users/{username}','UsersController@mostrar');*/
+		Route::get('users/{username}','UsersController@mostrar');
 
-	Route::resource('users','UsersController');
+		Route:: get('info','PaginasController@info');
 
-/*Route :: get('info','PaginasController@info');
+		Route:: get('info/{nombrePagina}','PaginasController@mostrarPagina');
 
-Route :: get('acerca','PaginasController@acerca');
-
-
+		Route:: get('acerca','PaginasController@acerca');
 
 
-Route::get('usuario', function()
-{
+
+
+	Route::get('usuario', function()
+	{
 	$usuario = User::find(1);
-	return $usuario->email;
-});
+	return $usuario->username;
+	});
 
 
 
 
 
-
-Route::get('/', function()
-{
-	$nombre = 'Nombre';
-	return View::make('hello') -> with ('nombre', $nombre);
-});
-*/
-
-/*
-Route::get('/', function()
+Route::get('diferente', function()
 {
 
-	/*$user = DB :: table('user')->find(1);
-	//dd($user); 
-	//error si solo mse regresa $user
+	/*$user = DB:: table('user')->find(1);
+	
 	return $user->username;*/
 
-	/*$user = DB:: table('user')->where('username','!=', 'Francis')->get();
+	$user = DB:: table('users')->where('username','!=', 'Francis')->get();
 
 	return $user;
 
-});*/
+});
 
 
-//public
-Route::get('/', function()
+
+Route::get('/crearUsuario', function()
 {
 
-	/*$user = new User;
-
-	$user -> id = '3';
+	//Forma 1
+	$user = new User;
 	$user -> username = 'NuevoUsuario';
 	$user -> password = Hash::make('12345');
 	$user -> save();
 	return User::all();
-	*/
-
-	/*User :: create([
-			'id'	   => 5,
+	
+//Fprma 2
+	User:: create([
 			'username' => 'UsuarioCreate',
-			'password' => Hash::make('dssdsds')
+			'password' => Hash::make('9876')
 
 		]);
 
 	return User::all();
-	*/
-
-
-	/*$user = User::find(2);
-	$user -> username = 'Modificado';
-	$user -> save();*/
-
-
-	/*$user = User::find(2);
-	$user -> delete();*/
-
-
-
-
-	//return User::orderBy('username','asc')->take(2)->get();
+	
 
 
 
@@ -112,6 +94,39 @@ Route::get('/', function()
 	 return View::make('hello2');
 
 });
+
+
+
+Route::get('/eliminarUsuario', function()
+{
+	$user = User::find(3);
+	$user -> delete();
+
+
+	 return View::make('hello2');
+});
+
+
+Route::get('/modificarUsuario', function()
+{
+	$user = User::find(3);
+	$user -> username = 'usuarioModificado';
+	$user -> save();
+
+	 return View::make('hello2');
+});
+
+
+Route::get('/ordenarUsuarios', function()
+{
+	//return User::orderBy('username','asc')->take(2)->get();
+
+	return User::orderBy('username','asc')->get();
+
+
+
+});
+
 
 
 

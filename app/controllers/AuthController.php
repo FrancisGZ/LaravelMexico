@@ -11,6 +11,7 @@ class AuthController extends BaseController {
 	        if (Auth::check())
 	        {
 	            // Si está autenticado lo mandamos a la raíz donde estara el mensaje de bienvenida.
+
 	            return Redirect::to('/');
 	        }
         	// Mostramos la vista login.blade.php (Recordemos que .blade.php se omite.)
